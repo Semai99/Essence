@@ -19,7 +19,7 @@ console.log("password");
 console.log(req.body.password);
 
 // chiffrer l'email avant de l'envoyer dans la bdd
-const emailCryptoJs =  cryptojs.HmacSHA256(req.body.email,`${process.env.CRYPTOJS_EMAIL}`).toString();
+const emailCryptoJs =  cryptojs.HmacSHA256(req.body.email,"<9UR4$a6jrGRW!|M,nek3qJ}v7,c87bX8!iQ74w_<Y53[{tn3Y5.C<JTeL-N*446KiAg/aH+W58Gn.G6k(mz5n2NmW85}W4?:[z#").toString();
 
 // hasher le mdp avant de l'envoyer dans la bdd 
 const saltRounds = 10;
@@ -56,7 +56,7 @@ exports.login = (req, res, next) => {
     // chiffrer l'email de la requete
 
     const emailCryptoJs =
-    cryptojs.HmacSHA256(req.body.email,`${process.env.CRYPTOJS_EMAIL}`)
+    cryptojs.HmacSHA256(req.body.email,"<9UR4$a6jrGRW!|M,nek3qJ}v7,c87bX8!iQ74w_<Y53[{tn3Y5.C<JTeL-N*446KiAg/aH+W58Gn.G6k(mz5n2NmW85}W4?:[z#")
     .toString();
     console.log("Email");
     console.log(emailCryptoJs);
