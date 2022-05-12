@@ -1,5 +1,5 @@
-// importation de bcryptjs pour hasher le mdp 
-const bcryptjs = require("bcryptjs");
+// importation de bcrypt pour hasher le mdp 
+const bcrypt = require("bcrypt");
 
 //importation pour chiffrer l'email 
 const cryptojs = require("crypto-js");
@@ -23,8 +23,8 @@ const emailCryptoJs =  cryptojs.HmacSHA256(req.body.email,`${process.env.CRYPTOJ
 
 // hasher le mdp avant de l'envoyer dans la bdd 
 const saltRounds = 10;
-bcryptjs.genSalt(saltRounds, function(err, salt){
-bcryptjs.hash(req.body.password, salt, function(err, hash){
+bcrypt.genSalt(saltRounds, function(err, salt){
+bcrypt.hash(req.body.password, salt, function(err, hash){
     // ce qui va etre enregistré dans mongoDB
     const user = new User({
         email : emailCryptoJs,
@@ -69,7 +69,7 @@ exports.login = (req, res, next) => {
             return res.status(400).json({error : "Utilisateur inexistant"})
         }
         // controler la validité du password envoyé par le front
-        bcryptjs
+        bcrypt
         .compare(req.body.password, user.password)
         .then((controlPassword) =>{
             
