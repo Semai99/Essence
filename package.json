@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "next build",
     "start": "node server.js",
     "start:dev": "nodemon server.js"
   },
